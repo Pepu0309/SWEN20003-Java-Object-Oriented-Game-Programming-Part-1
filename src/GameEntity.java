@@ -1,13 +1,11 @@
 import bagel.*;
 public class GameEntity {
     private Image entityImage;
-    private double xCoordinate;
-    private double yCoordinate;
+    private Point point;
 
-    public GameEntity(String imageFilename, double xCoordinate, double yCoordinate){
+    public GameEntity(String imageFilename, double x, double y){
         this.entityImage = new Image(imageFilename);
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+        this.point = new Point(x, y);
     }
 
     public Image getEntityImage() {
@@ -18,19 +16,11 @@ public class GameEntity {
         this.entityImage = entityImage;
     }
 
-    public double getxCoordinate() {
-        return xCoordinate;
+    public Point getPoint() {
+        return point;
     }
 
-    public void setxCoordinate(double xCoordinate) {
-        this.xCoordinate = xCoordinate;
-    }
-
-    public double getyCoordinate() {
-        return yCoordinate;
-    }
-
-    public void setyCoordinate(double yCoordinate) {
-        this.yCoordinate = yCoordinate;
+    public void setPoint(Point point) {
+        this.point = point;
     }
 }

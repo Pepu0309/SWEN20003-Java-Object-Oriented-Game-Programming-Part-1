@@ -1,7 +1,7 @@
 public class Zombie extends GameEntity{
 
-    public Zombie(String imageFilename, double xCoordinate, double yCoordinate){
-        super(imageFilename, xCoordinate, yCoordinate);
+    public Zombie(String imageFilename, double x, double y){
+        super(imageFilename, x, y);
     }
 
 }

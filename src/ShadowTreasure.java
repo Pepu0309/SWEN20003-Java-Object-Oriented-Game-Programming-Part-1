@@ -11,11 +11,18 @@ import java.util.*;
  */
 public class ShadowTreasure extends AbstractGame {
 
+    static final double STEP_SIZE = 10;
+    static final int FRAMES_PER_TICK = 10;
+
     // for rounding double number; use this to print the location of the player
     private static DecimalFormat df = new DecimalFormat("0.00");
+
     private Player player;
     private GameEntity zombie;
     private GameEntity sandwich;
+
+    private int frameCounter = 0;
+
     public static void printInfo(double x, double y, int e) {
         System.out.println(df.format(x) + "," + df.format(y) + "," + e);
     }
@@ -68,9 +75,16 @@ public class ShadowTreasure extends AbstractGame {
     @Override
     public void update(Input input) {
         // Logic to update the game, as per specification must go here
-        player.getEntityImage().draw(player.getxCoordinate(), player.getyCoordinate());
-        zombie.getEntityImage().draw(zombie.getxCoordinate(), zombie.getyCoordinate());
-        sandwich.getEntityImage().draw(sandwich.getxCoordinate(), zombie.getyCoordinate());
+        frameCounter++;
+
+        // Draws the images according to the coordinates that they are in
+        player.getEntityImage().draw(player.getPoint().getX(), player.getPoint().getY() );
+        zombie.getEntityImage().draw(zombie.getPoint().getX(), zombie.getPoint().getY() );
+        sandwich.getEntityImage().draw(sandwich.getPoint().getX(), sandwich.getPoint().getY() );
+
+        if(frameCounter % FRAMES_PER_TICK == 0) {
+
+        }
     }
 
 
