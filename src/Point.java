@@ -1,4 +1,5 @@
 public class Point {
+    // Class that represents a coordinate
     private double x;
     private double y;
 
@@ -6,6 +7,8 @@ public class Point {
         this.x = x;
         this.y = y;
     }
+
+    // public double distanceTo(Point point2){ }
 
     public double getX() {
         return x;

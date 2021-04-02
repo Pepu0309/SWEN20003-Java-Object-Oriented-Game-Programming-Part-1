@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.*;
+
 
 /**
  * An example Bagel game.
@@ -20,17 +20,21 @@ public class ShadowTreasure extends AbstractGame {
     private Player player;
     private GameEntity zombie;
     private GameEntity sandwich;
+    private Image background = new Image("res/images/background.png");
 
     private int frameCounter = 0;
 
     public static void printInfo(double x, double y, int e) {
         System.out.println(df.format(x) + "," + df.format(y) + "," + e);
     }
-    
+
     public ShadowTreasure() throws IOException {
         super(900, 600, "Treasure Hunt");
         this.loadEnvironment("res/IO/environment.csv");
         // Add code to initialize other attributes as needed
+
+        // Display initial positions of entities
+        updateAll();
     }
 
     /**
@@ -39,7 +43,7 @@ public class ShadowTreasure extends AbstractGame {
     private void loadEnvironment(String filename){
         // Using buffered reader and file reader to read from the environment.csv file.
         try (BufferedReader br =
-                new BufferedReader(new FileReader(filename))) {
+                     new BufferedReader(new FileReader(filename))) {
             String fileText;
 
             // Reads each row of the file until there are no rows left to read.
@@ -77,17 +81,22 @@ public class ShadowTreasure extends AbstractGame {
         // Logic to update the game, as per specification must go here
         frameCounter++;
 
-        // Draws the images according to the coordinates that they are in
-        player.getEntityImage().draw(player.getPoint().getX(), player.getPoint().getY() );
-        zombie.getEntityImage().draw(zombie.getPoint().getX(), zombie.getPoint().getY() );
-        sandwich.getEntityImage().draw(sandwich.getPoint().getX(), sandwich.getPoint().getY() );
+
 
         if(frameCounter % FRAMES_PER_TICK == 0) {
 
         }
+
+        // Draws the images according to the coordinates that they are in
+        updateAll();
     }
 
-
+    public void updateAll(){
+        background.draw(0,0);
+        player.drawEntity();
+        zombie.drawEntity();
+        sandwich.drawEntity();
+    }
     /**
      * The entry point for the program.
      */

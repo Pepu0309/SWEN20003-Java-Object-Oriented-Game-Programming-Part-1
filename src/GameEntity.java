@@ -1,5 +1,6 @@
 import bagel.*;
 public class GameEntity {
+    // Superclass of all Game Entities
     private Image entityImage;
     private Point point;
 
@@ -7,6 +8,12 @@ public class GameEntity {
         this.entityImage = new Image(imageFilename);
         this.point = new Point(x, y);
     }
+
+    public void drawEntity(){
+        entityImage.draw(point.getX(), point.getY());
+    }
+
+    //public double distance(){ }
 
     public Image getEntityImage() {
         return entityImage;
