@@ -11,15 +11,15 @@ import java.text.DecimalFormat;
  */
 public class ShadowTreasure extends AbstractGame {
 
-    static final double STEP_SIZE = 10;
+
     static final int FRAMES_PER_TICK = 10;
 
     // for rounding double number; use this to print the location of the player
     private static DecimalFormat df = new DecimalFormat("0.00");
 
     private Player player;
-    private GameEntity zombie;
-    private GameEntity sandwich;
+    private Zombie zombie;
+    private Sandwich sandwich;
     private Image background = new Image("res/images/background.png");
 
     private int frameCounter = 0;
@@ -81,10 +81,8 @@ public class ShadowTreasure extends AbstractGame {
         // Logic to update the game, as per specification must go here
         frameCounter++;
 
-
-
         if(frameCounter % FRAMES_PER_TICK == 0) {
-
+            updateTick();
         }
 
         // Draws the images according to the coordinates that they are in
@@ -96,8 +94,28 @@ public class ShadowTreasure extends AbstractGame {
         background.draw(0,0);
         player.drawEntity();
         zombie.drawEntity();
-        sandwich.drawEntity();
+        if(sandwich.isEaten() == false){
+            sandwich.drawEntity();
+        }
     }
+
+    // Algorithm 1 from the specification, called every game tick
+    public void updateTick(){
+        if (player.getPoint().meet(zombie.getPoint())){
+            player.setEnergyLevel(player.getEnergyLevel() - 3);
+            Window.close();
+        } else if (player.getPoint().meet(sandwich.getPoint())){
+            player.setEnergyLevel(player.getEnergyLevel() + 5);
+            sandwich.setEaten(true);
+        }
+
+        if (player.getEnergyLevel() >= 3){
+            player.moveStep(zombie.getPoint());
+        } else {
+            player.moveStep(sandwich.getPoint());
+        }
+    }
+
 
     /**
      * The entry point for the program.
