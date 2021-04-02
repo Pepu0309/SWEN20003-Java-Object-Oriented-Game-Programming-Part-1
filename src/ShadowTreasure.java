@@ -34,7 +34,7 @@ public class ShadowTreasure extends AbstractGame {
         // Add code to initialize other attributes as needed
 
         // Display initial positions of entities
-        updateAll();
+        drawAll();
     }
 
     /**
@@ -88,15 +88,17 @@ public class ShadowTreasure extends AbstractGame {
         }
 
         // Draws the images according to the coordinates that they are in
-        updateAll();
+        drawAll();
     }
 
-    public void updateAll(){
+    // Display all entities to update their positions. Displays the static background first so it's behind.
+    public void drawAll(){
         background.draw(0,0);
         player.drawEntity();
         zombie.drawEntity();
         sandwich.drawEntity();
     }
+
     /**
      * The entry point for the program.
      */

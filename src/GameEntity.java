@@ -9,6 +9,7 @@ public class GameEntity {
         this.point = new Point(x, y);
     }
 
+    // Draws entity on screen based on their coordinates
     public void drawEntity(){
         entityImage.draw(point.getX(), point.getY());
     }
