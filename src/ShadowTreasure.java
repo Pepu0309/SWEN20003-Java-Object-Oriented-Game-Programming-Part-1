@@ -24,6 +24,8 @@ public class ShadowTreasure extends AbstractGame {
 
     private int frameCounter = 0;
 
+    private Font energyFont = new Font("res/font/DejaVuSans-Bold.ttf", 20);
+
     public static void printInfo(double x, double y, int e) {
         System.out.println(df.format(x) + "," + df.format(y) + "," + e);
     }
@@ -86,7 +88,7 @@ public class ShadowTreasure extends AbstractGame {
         // Logic to update the game, as per specification must go here
 
         // Draws the images according to the coordinates that they are in
-        drawAll();
+        displayAll();
         if(frameCounter % FRAMES_PER_TICK == 0) {
             updateTick();
         }
@@ -96,17 +98,20 @@ public class ShadowTreasure extends AbstractGame {
     }
 
     // Display all entities to update their positions. Displays the static background first so it's behind.
-    public void drawAll(){
+    public void displayAll(){
         background.drawFromTopLeft(0,0);
         player.drawEntity();
         zombie.drawEntity();
         if(sandwich.isEaten() == false){
             sandwich.drawEntity();
         }
+        energyFont.drawString(String.format("energy: %d", player.getEnergyLevel()), 20, 760);
     }
 
-    // Algorithm 1 from the specification, called every game tick
+    // Method called to update the game status every tick
     public void updateTick(){
+
+        // // Algorithm 1 from the specification, called every game tick
         if (player.getPoint().meet(zombie.getPoint())){
             player.setEnergyLevel(player.getEnergyLevel() - 3);
             Window.close();
