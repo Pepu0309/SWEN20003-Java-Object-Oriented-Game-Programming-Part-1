@@ -29,12 +29,12 @@ public class ShadowTreasure extends AbstractGame {
     }
 
     public ShadowTreasure() throws IOException {
-        super(900, 600, "Treasure Hunt");
+        // super(900, 600, "Treasure Hunt");
         this.loadEnvironment("res/IO/environment.csv");
         // Add code to initialize other attributes as needed
 
-        // Display initial positions of entities
-        drawAll();
+        // Prints the initial information of the player
+        printInfo(player.getPoint().getX(), player.getPoint().getY(), player.getEnergyLevel());
     }
 
     /**
@@ -84,19 +84,20 @@ public class ShadowTreasure extends AbstractGame {
     @Override
     public void update(Input input) {
         // Logic to update the game, as per specification must go here
-        frameCounter++;
 
+        // Draws the images according to the coordinates that they are in
+        drawAll();
         if(frameCounter % FRAMES_PER_TICK == 0) {
             updateTick();
         }
 
-        // Draws the images according to the coordinates that they are in
-        drawAll();
+
+        frameCounter++;
     }
 
     // Display all entities to update their positions. Displays the static background first so it's behind.
     public void drawAll(){
-        background.draw(0,0);
+        background.drawFromTopLeft(0,0);
         player.drawEntity();
         zombie.drawEntity();
         if(sandwich.isEaten() == false){
@@ -109,7 +110,7 @@ public class ShadowTreasure extends AbstractGame {
         if (player.getPoint().meet(zombie.getPoint())){
             player.setEnergyLevel(player.getEnergyLevel() - 3);
             Window.close();
-        } else if (player.getPoint().meet(sandwich.getPoint())){
+        } else if (player.getPoint().meet(sandwich.getPoint()) && sandwich.isEaten() == false){
             player.setEnergyLevel(player.getEnergyLevel() + 5);
             sandwich.setEaten(true);
         }
@@ -119,8 +120,10 @@ public class ShadowTreasure extends AbstractGame {
         } else {
             player.moveStep(sandwich.getPoint());
         }
-    }
 
+        // Prints the coordinates of the player after every tick
+        printInfo(player.getPoint().getX(), player.getPoint().getY(), player.getEnergyLevel());
+    }
 
     /**
      * The entry point for the program.

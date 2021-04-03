@@ -14,8 +14,6 @@ public class GameEntity {
         entityImage.draw(point.getX(), point.getY());
     }
 
-    //public double distance(){ }
-
     public Image getEntityImage() {
         return entityImage;
     }
