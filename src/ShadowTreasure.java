@@ -89,11 +89,13 @@ public class ShadowTreasure extends AbstractGame {
 
         // Draws the images according to the coordinates that they are in
         displayAll();
+
+        // Updates the game status every 10 ticks
         if(frameCounter % FRAMES_PER_TICK == 0) {
             updateTick();
         }
 
-
+        // Increment frame counter to keep track of current frame
         frameCounter++;
     }
 
