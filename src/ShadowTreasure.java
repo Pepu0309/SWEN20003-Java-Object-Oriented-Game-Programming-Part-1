@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
-
+import java.util.*;
 
 /**
  * An example Bagel game.
@@ -47,25 +47,30 @@ public class ShadowTreasure extends AbstractGame {
             String fileText;
 
             // Reads each row of the file until there are no rows left to read.
-            int csvRowCounter = 1;
             while ((fileText = br.readLine()) != null) {
+
+                /* Replaces all occurrences of non-alphanumerical, comma or dot characters with an empty string,
+                 * using regex expression [^,.a-zA-z0-9]+. Code referenced from
+                 * https://stackoverflow.com/questions/39672094/
+                 * how-to-remove-all-special-character-in-a-string-except-dot-and-comma/39672126 and modified for use.
+                 */
+                fileText = fileText.replaceAll("[^,.a-zA-z0-9]+", "");
                 String[] currentCSVRow = fileText.split(",");
 
+                String entityType = currentCSVRow[0];
                 // Checks which entity of the game the row is referring to in the csv file and then initializes it.
-                if (csvRowCounter == 1){
+                if (entityType.equals("Player")){
                     player = new Player("res/images/player.png",Double.valueOf(currentCSVRow[1]),
                             Double.valueOf(currentCSVRow[2]), Integer.valueOf(currentCSVRow[3]));
 
-                } else if (csvRowCounter == 2){
+                } else if (entityType.equals("Zombie")){
                     zombie = new Zombie("res/images/zombie.png",Double.valueOf(currentCSVRow[1]),
                             Double.valueOf(currentCSVRow[2]));
 
-                } else if (csvRowCounter == 3){
+                } else if (entityType.equals("Sandwich")){
                     sandwich = new Sandwich("res/images/sandwich.png",Double.valueOf(currentCSVRow[1]),
                             Double.valueOf(currentCSVRow[2]));
                 }
-
-                csvRowCounter++;
             }
 
         } catch (Exception e) {
