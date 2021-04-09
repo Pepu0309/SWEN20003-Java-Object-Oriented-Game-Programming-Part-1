@@ -32,11 +32,9 @@ public class ShadowTreasure extends AbstractGame {
 
     public ShadowTreasure() throws IOException {
         // super(900, 600, "Treasure Hunt");
-        this.loadEnvironment("res/IO/environment.csv");
+        this.loadEnvironment("test/test2/environment.csv");
         // Add code to initialize other attributes as needed
 
-        // Prints the initial information of the player
-        printInfo(player.getPoint().getX(), player.getPoint().getY(), player.getEnergyLevel());
     }
 
     /**
@@ -113,23 +111,26 @@ public class ShadowTreasure extends AbstractGame {
     // Method called to update the game status every tick
     public void updateTick(){
 
-        // // Algorithm 1 from the specification, called every game tick
+        // Algorithm 1 from the specification, called every game tick
         if (player.getPoint().meet(zombie.getPoint())){
             player.setEnergyLevel(player.getEnergyLevel() - 3);
-            Window.close();
+            printInfo(player.getPoint().getX(), player.getPoint().getY(), player.getEnergyLevel());
+            System.exit(0);
+
         } else if (player.getPoint().meet(sandwich.getPoint()) && sandwich.isEaten() == false){
             player.setEnergyLevel(player.getEnergyLevel() + 5);
             sandwich.setEaten(true);
         }
 
+        printInfo(player.getPoint().getX(), player.getPoint().getY(), player.getEnergyLevel());
         if (player.getEnergyLevel() >= 3){
             player.moveStep(zombie.getPoint());
         } else {
             player.moveStep(sandwich.getPoint());
         }
 
-        // Prints the coordinates of the player after every tick
-        printInfo(player.getPoint().getX(), player.getPoint().getY(), player.getEnergyLevel());
+
+
     }
 
     /**
