@@ -85,6 +85,9 @@ public class ShadowTreasure extends AbstractGame {
     public void update(Input input) {
         // Logic to update the game, as per specification must go here
 
+        // Increment frame counter to keep track of current frame
+        frameCounter++;
+
         // Draws the images according to the coordinates that they are in
         displayAll();
 
@@ -93,8 +96,6 @@ public class ShadowTreasure extends AbstractGame {
             updateTick();
         }
 
-        // Increment frame counter to keep track of current frame
-        frameCounter++;
     }
 
     // Display all entities to update their positions. Displays the static background first so it's behind.
@@ -114,6 +115,8 @@ public class ShadowTreasure extends AbstractGame {
         // Algorithm 1 from the specification, called every game tick
         if (player.getPoint().meet(zombie.getPoint())){
             player.setEnergyLevel(player.getEnergyLevel() - 3);
+
+            // prints information of the player right before game is terminated
             printInfo(player.getPoint().getX(), player.getPoint().getY(), player.getEnergyLevel());
             System.exit(0);
 
@@ -122,14 +125,13 @@ public class ShadowTreasure extends AbstractGame {
             sandwich.setEaten(true);
         }
 
+        // prints the information of the player right before moving
         printInfo(player.getPoint().getX(), player.getPoint().getY(), player.getEnergyLevel());
         if (player.getEnergyLevel() >= 3){
             player.moveStep(zombie.getPoint());
         } else {
             player.moveStep(sandwich.getPoint());
         }
-
-
 
     }
 
