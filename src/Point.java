@@ -13,7 +13,7 @@ public class Point {
         return Math.sqrt(Math.pow((this.x - point2.getX()), 2) + Math.pow((this.y - point2.getY()), 2));
     }
 
-    // Determines whether a point meets with another point with respect to definition
+    // Determines whether a point meets with another point using the condition
     public boolean meet(Point point2){
         if(distanceTo(point2) < MEET_CONDITION){
             return true;

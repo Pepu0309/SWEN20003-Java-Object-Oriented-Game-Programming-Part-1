@@ -24,15 +24,14 @@ public class ShadowTreasure extends AbstractGame {
 
     private int frameCounter = 0;
 
-    private Font energyFont = new Font("res/font/DejaVuSans-Bold.ttf", 20);
+    private final Font energyFont = new Font("res/font/DejaVuSans-Bold.ttf", 20);
 
     public static void printInfo(double x, double y, int e) {
         System.out.println(df.format(x) + "," + df.format(y) + "," + e);
     }
 
     public ShadowTreasure() throws IOException {
-        // super(900, 600, "Treasure Hunt");
-        this.loadEnvironment("test/test2/environment.csv");
+        this.loadEnvironment("res/IO/environment.csv");
         // Add code to initialize other attributes as needed
 
     }
@@ -60,16 +59,14 @@ public class ShadowTreasure extends AbstractGame {
                 String entityType = currentCSVRow[0];
                 // Checks which entity of the game the row is referring to in the csv file and then initializes it.
                 if (entityType.equals("Player")){
-                    player = new Player("res/images/player.png",Double.valueOf(currentCSVRow[1]),
-                            Double.valueOf(currentCSVRow[2]), Integer.valueOf(currentCSVRow[3]));
+                    player = new Player(Double.valueOf(currentCSVRow[1]), Double.valueOf(currentCSVRow[2]),
+                            Integer.valueOf(currentCSVRow[3]));
 
                 } else if (entityType.equals("Zombie")){
-                    zombie = new Zombie("res/images/zombie.png",Double.valueOf(currentCSVRow[1]),
-                            Double.valueOf(currentCSVRow[2]));
+                    zombie = new Zombie(Double.valueOf(currentCSVRow[1]), Double.valueOf(currentCSVRow[2]));
 
                 } else if (entityType.equals("Sandwich")){
-                    sandwich = new Sandwich("res/images/sandwich.png",Double.valueOf(currentCSVRow[1]),
-                            Double.valueOf(currentCSVRow[2]));
+                    sandwich = new Sandwich(Double.valueOf(currentCSVRow[1]), Double.valueOf(currentCSVRow[2]));
                 }
             }
 

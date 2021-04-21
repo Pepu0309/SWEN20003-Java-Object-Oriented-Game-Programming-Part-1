@@ -1,11 +1,13 @@
 import bagel.*;
-public class Player extends GameEntity{
-    // Subclass Player which is a Game Entity
+public class Player{
+    // Player class which contains all attributes and behaviour associated with the player
+    private final Image entityImage = new Image("res/images/player.png");
+    private Point point;
     private static double STEP_SIZE = 10;
     private int energyLevel;
 
-    public Player(String imageFilename, double x, double y, int energyLevel){
-        super(imageFilename, x, y);
+    public Player(double x, double y, int energyLevel){
+        this.point = new Point(x, y);
         this.energyLevel = energyLevel;
     }
 
@@ -31,5 +33,18 @@ public class Player extends GameEntity{
 
     public void setEnergyLevel(int energyLevel) {
         this.energyLevel = energyLevel;
+    }
+
+    // Draws entity on screen based on their coordinates
+    public void drawEntity(){
+        entityImage.draw(point.getX(), point.getY());
+    }
+
+    public Point getPoint() {
+        return point;
+    }
+
+    public void setPoint(Point point) {
+        this.point = point;
     }
 }

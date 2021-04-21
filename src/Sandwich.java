@@ -1,9 +1,12 @@
-public class Sandwich extends GameEntity{
-    // Subclass Sandwich which is a Game Entity
+import bagel.Image;
+public class Sandwich{
+    // Sandwich class which contains all attributes and behaviour associated with Sandwich
+    private final Image entityImage = new Image("res/images/sandwich.png");
+    private Point point;
     private boolean isEaten;
 
-    public Sandwich(String imageFilename, double x, double y){
-        super(imageFilename, x, y);
+    public Sandwich(double x, double y){
+        this.point = new Point(x, y);
         this.isEaten = false;
     }
 
@@ -13,6 +16,19 @@ public class Sandwich extends GameEntity{
 
     public void setEaten(boolean eaten) {
         isEaten = eaten;
+    }
+
+    // Draws entity on screen based on their coordinates
+    public void drawEntity(){
+        entityImage.draw(point.getX(), point.getY());
+    }
+
+    public Point getPoint() {
+        return point;
+    }
+
+    public void setPoint(Point point) {
+        this.point = point;
     }
 }
 
