@@ -20,11 +20,11 @@ public class ShadowTreasure extends AbstractGame {
     private Player player;
     private Zombie zombie;
     private Sandwich sandwich;
-    private static final Image background = new Image("res/images/background.png");
+    private Image background = new Image("res/images/background.png");
 
     private int frameCounter = 0;
 
-    private static final Font energyFont = new Font("res/font/DejaVuSans-Bold.ttf", 20);
+    private Font energyFont = new Font("res/font/DejaVuSans-Bold.ttf", 20);
 
     public static void printInfo(double x, double y, int e) {
         System.out.println(df.format(x) + "," + df.format(y) + "," + e);
@@ -100,9 +100,7 @@ public class ShadowTreasure extends AbstractGame {
         background.drawFromTopLeft(0,0);
         player.drawEntity();
         zombie.drawEntity();
-        if(sandwich.isEaten() == false){
-            sandwich.drawEntity();
-        }
+        sandwich.drawEntity();
         energyFont.drawString(String.format("energy: %d", player.getEnergyLevel()), 20, 760);
     }
 

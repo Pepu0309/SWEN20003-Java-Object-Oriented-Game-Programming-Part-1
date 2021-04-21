@@ -20,7 +20,10 @@ public class Sandwich{
 
     // Draws entity on screen based on their coordinates
     public void drawEntity(){
-        entityImage.draw(point.getX(), point.getY());
+        // Only continue to draw the sandwich if it has not been eaten
+        if(isEaten() == false) {
+            entityImage.draw(point.getX(), point.getY());
+        }
     }
 
     public Point getPoint() {
