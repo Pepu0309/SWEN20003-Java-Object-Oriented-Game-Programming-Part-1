@@ -20,11 +20,11 @@ public class ShadowTreasure extends AbstractGame {
     private Player player;
     private Zombie zombie;
     private Sandwich sandwich;
-    private Image background = new Image("res/images/background.png");
+    private static final Image background = new Image("res/images/background.png");
 
     private int frameCounter = 0;
 
-    private final Font energyFont = new Font("res/font/DejaVuSans-Bold.ttf", 20);
+    private static final Font energyFont = new Font("res/font/DejaVuSans-Bold.ttf", 20);
 
     public static void printInfo(double x, double y, int e) {
         System.out.println(df.format(x) + "," + df.format(y) + "," + e);

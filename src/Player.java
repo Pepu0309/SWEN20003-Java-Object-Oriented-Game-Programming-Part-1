@@ -1,7 +1,7 @@
 import bagel.*;
 public class Player{
     // Player class which contains all attributes and behaviour associated with the player
-    private final Image entityImage = new Image("res/images/player.png");
+    private static final Image entityImage = new Image("res/images/player.png");
     private Point point;
     private static double STEP_SIZE = 10;
     private int energyLevel;
