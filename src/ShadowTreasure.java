@@ -12,8 +12,9 @@ import java.util.*;
  */
 public class ShadowTreasure extends AbstractGame {
 
-
+    // Some constants to be used in the operation of the ShadowTreasure Class
     private static final int FRAMES_PER_TICK = 10;
+    private static final int SUCCESSFUL_TERMINATION = 0;
 
     // for rounding double number; use this to print the location of the player
     private static DecimalFormat df = new DecimalFormat("0.00");
@@ -116,20 +117,23 @@ public class ShadowTreasure extends AbstractGame {
 
         // Algorithm 1 from the specification, called every game tick
         if (player.getPoint().meet(zombie.getPoint())){
-            player.setEnergyLevel(player.getEnergyLevel() - 3);
+            player.setEnergyLevel(player.getEnergyLevel() - Zombie.getPlayerEnergyLoss());
 
             // prints information of the player right before game is terminated
             printInfo(player.getPoint().getX(), player.getPoint().getY(), player.getEnergyLevel());
-            System.exit(0);
+
+            // Close the window and exit the program
+            Window.close();
+            System.exit(SUCCESSFUL_TERMINATION);
 
         } else if (player.getPoint().meet(sandwich.getPoint()) && !sandwich.isEaten()){
-            player.setEnergyLevel(player.getEnergyLevel() + 5);
+            player.setEnergyLevel(player.getEnergyLevel() + Sandwich.getPlayerEnergyGained());
             sandwich.setEaten(true);
         }
 
         // prints the information of the player right before moving
         printInfo(player.getPoint().getX(), player.getPoint().getY(), player.getEnergyLevel());
-        if (player.getEnergyLevel() >= 3){
+        if (player.getEnergyLevel() >= Player.getPlayerEnergyGoesTowardsZombie()){
             player.moveStep(zombie.getPoint());
         } else {
             player.moveStep(sandwich.getPoint());

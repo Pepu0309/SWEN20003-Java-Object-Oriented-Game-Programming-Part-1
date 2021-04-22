@@ -1,9 +1,12 @@
 import bagel.*;
 public class Player{
     // Player class which contains all attributes and behaviour associated with the player
+
     private static final Image entityImage = new Image("res/images/player.png");
+    private static final int PLAYER_ENERGY_GOES_TOWARDS_ZOMBIE = 3;
+    private static final double STEP_SIZE = 10;
+
     private Point point;
-    private static double STEP_SIZE = 10;
     private int energyLevel;
 
     public Player(double x, double y, int energyLevel){
@@ -44,7 +47,7 @@ public class Player{
         return point;
     }
 
-    public void setPoint(Point point) {
-        this.point = point;
+    public static int getPlayerEnergyGoesTowardsZombie() {
+        return PLAYER_ENERGY_GOES_TOWARDS_ZOMBIE;
     }
 }

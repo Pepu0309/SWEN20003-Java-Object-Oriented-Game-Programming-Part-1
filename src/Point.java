@@ -1,6 +1,8 @@
 public class Point {
     // Class that represents a coordinate
+
     private static final double MEET_CONDITION = 50;
+
     private double x;
     private double y;
 
