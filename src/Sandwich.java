@@ -2,7 +2,7 @@ import bagel.Image;
 public class Sandwich{
     // Sandwich class which contains all attributes and behaviour associated with Sandwich
 
-    private static final Image entityImage = new Image("res/images/sandwich.png");
+    private final Image entityImage = new Image("res/images/sandwich.png");
     private static final int PLAYER_ENERGY_GAINED = 5;
 
     private Point point;

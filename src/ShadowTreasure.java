@@ -15,6 +15,8 @@ public class ShadowTreasure extends AbstractGame {
     // Some constants to be used in the operation of the ShadowTreasure Class
     private static final int FRAMES_PER_TICK = 10;
     private static final int SUCCESSFUL_TERMINATION = 0;
+    private static final Point ENERGY_LEVEL_TEXT_POINT = new Point(20, 760);
+    private static final Point WINDOW_TOP_LEFT = new Point(0, 0);
 
     // for rounding double number; use this to print the location of the player
     private static DecimalFormat df = new DecimalFormat("0.00");
@@ -22,13 +24,13 @@ public class ShadowTreasure extends AbstractGame {
     private Player player;
     private Zombie zombie;
     private Sandwich sandwich;
-    private Image background = new Image("res/images/background.png");
+    private final Image background = new Image("res/images/background.png");
 
     // Counting the number of frames from 1 as instructed by the project specification
     private int frameCounter = 1;
 
     private DrawOptions energyFontDrawOptions = new DrawOptions();
-    private Font energyFont = new Font("res/font/DejaVuSans-Bold.ttf", 20);
+    private final Font energyFont = new Font("res/font/DejaVuSans-Bold.ttf", 20);
 
     public static void printInfo(double x, double y, int e) {
         System.out.println(df.format(x) + "," + df.format(y) + "," + e);
@@ -101,14 +103,14 @@ public class ShadowTreasure extends AbstractGame {
 
     // Display all entities to update their positions. Displays the static background first so it's behind.
     public void displayAll(){
-        background.drawFromTopLeft(0,0);
+        background.drawFromTopLeft(WINDOW_TOP_LEFT.getX(), WINDOW_TOP_LEFT.getY());
         player.drawEntity();
         zombie.drawEntity();
         sandwich.drawEntity();
 
         // Draws the energy level of player at coordinates (20, 760) with the colour being black
-        energyFont.drawString(String.format("energy: %d", player.getEnergyLevel()),
-                20, 760, energyFontDrawOptions.setBlendColour(Colour.BLACK));
+        energyFont.drawString(String.format("energy: %d", player.getEnergyLevel()), ENERGY_LEVEL_TEXT_POINT.getX(),
+                ENERGY_LEVEL_TEXT_POINT.getY(), energyFontDrawOptions.setBlendColour(Colour.BLACK));
 
     }
 

@@ -3,8 +3,8 @@ import bagel.Image;
 public class Zombie{
     // Zombie class which contains all attributes and behaviour associated with Sandwich
 
+    private final Image entityImage = new Image("res/images/zombie.png");
     private static final int PLAYER_ENERGY_LOSS = 3;
-    private static final Image entityImage = new Image("res/images/zombie.png");
 
     private Point point;
 
