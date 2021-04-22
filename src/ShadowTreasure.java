@@ -24,6 +24,7 @@ public class ShadowTreasure extends AbstractGame {
 
     private int frameCounter = 0;
 
+    private DrawOptions energyFontDrawOptions = new DrawOptions();
     private Font energyFont = new Font("res/font/DejaVuSans-Bold.ttf", 20);
 
     public static void printInfo(double x, double y, int e) {
@@ -48,8 +49,8 @@ public class ShadowTreasure extends AbstractGame {
             // Reads each row of the file until there are no rows left to read.
             while ((fileText = br.readLine()) != null) {
 
-                /* Replaces all occurrences of non-alphanumerical, comma or dot characters with an empty string,
-                 * using regex expression [^,.a-zA-z0-9]+. Code referenced from
+                /* Replaces all occurrences of anything that's not an alphanumerical, comma or dot character with an
+                 * empty string, using regex expression [^,.a-zA-z0-9]+. Code referenced from
                  * https://stackoverflow.com/questions/39672094/
                  * how-to-remove-all-special-character-in-a-string-except-dot-and-comma/39672126 and modified for use.
                  */
@@ -59,14 +60,14 @@ public class ShadowTreasure extends AbstractGame {
                 String entityType = currentCSVRow[0];
                 // Checks which entity of the game the row is referring to in the csv file and then initializes it.
                 if (entityType.equals("Player")){
-                    player = new Player(Double.valueOf(currentCSVRow[1]), Double.valueOf(currentCSVRow[2]),
-                            Integer.valueOf(currentCSVRow[3]));
+                    player = new Player(Double.parseDouble(currentCSVRow[1]), Double.parseDouble(currentCSVRow[2]),
+                            Integer.parseInt(currentCSVRow[3]));
 
                 } else if (entityType.equals("Zombie")){
-                    zombie = new Zombie(Double.valueOf(currentCSVRow[1]), Double.valueOf(currentCSVRow[2]));
+                    zombie = new Zombie(Double.parseDouble(currentCSVRow[1]), Double.parseDouble(currentCSVRow[2]));
 
                 } else if (entityType.equals("Sandwich")){
-                    sandwich = new Sandwich(Double.valueOf(currentCSVRow[1]), Double.valueOf(currentCSVRow[2]));
+                    sandwich = new Sandwich(Double.parseDouble(currentCSVRow[1]), Double.parseDouble(currentCSVRow[2]));
                 }
             }
 
@@ -101,7 +102,11 @@ public class ShadowTreasure extends AbstractGame {
         player.drawEntity();
         zombie.drawEntity();
         sandwich.drawEntity();
-        energyFont.drawString(String.format("energy: %d", player.getEnergyLevel()), 20, 760);
+
+        // Draws the energy level of player at coordinates (20, 760) with the colour being black
+        energyFont.drawString(String.format("energy: %d", player.getEnergyLevel()),
+                20, 760, energyFontDrawOptions.setBlendColour(0, 0, 0));
+
     }
 
     // Method called to update the game status every tick
@@ -115,7 +120,7 @@ public class ShadowTreasure extends AbstractGame {
             printInfo(player.getPoint().getX(), player.getPoint().getY(), player.getEnergyLevel());
             System.exit(0);
 
-        } else if (player.getPoint().meet(sandwich.getPoint()) && sandwich.isEaten() == false){
+        } else if (player.getPoint().meet(sandwich.getPoint()) && !sandwich.isEaten()){
             player.setEnergyLevel(player.getEnergyLevel() + 5);
             sandwich.setEaten(true);
         }
