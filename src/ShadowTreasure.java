@@ -1,4 +1,5 @@
 import bagel.*;
+import bagel.util.Colour;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,7 +13,7 @@ import java.util.*;
 public class ShadowTreasure extends AbstractGame {
 
 
-    static final int FRAMES_PER_TICK = 10;
+    private static final int FRAMES_PER_TICK = 10;
 
     // for rounding double number; use this to print the location of the player
     private static DecimalFormat df = new DecimalFormat("0.00");
@@ -22,7 +23,8 @@ public class ShadowTreasure extends AbstractGame {
     private Sandwich sandwich;
     private Image background = new Image("res/images/background.png");
 
-    private int frameCounter = 0;
+    // Counting the number of frames from 1 as instructed by the project specification
+    private int frameCounter = 1;
 
     private DrawOptions energyFontDrawOptions = new DrawOptions();
     private Font energyFont = new Font("res/font/DejaVuSans-Bold.ttf", 20);
@@ -83,16 +85,16 @@ public class ShadowTreasure extends AbstractGame {
     public void update(Input input) {
         // Logic to update the game, as per specification must go here
 
-        // Increment frame counter to keep track of current frame
-        frameCounter++;
-
         // Draws the images according to the coordinates that they are in
         displayAll();
 
-        // Updates the game status every 10 ticks
+        // Updates the game status every 10 frames
         if(frameCounter % FRAMES_PER_TICK == 0) {
             updateTick();
         }
+
+        // Increment frame counter to keep track of current frame
+        frameCounter++;
 
     }
 
@@ -105,7 +107,7 @@ public class ShadowTreasure extends AbstractGame {
 
         // Draws the energy level of player at coordinates (20, 760) with the colour being black
         energyFont.drawString(String.format("energy: %d", player.getEnergyLevel()),
-                20, 760, energyFontDrawOptions.setBlendColour(0, 0, 0));
+                20, 760, energyFontDrawOptions.setBlendColour(Colour.BLACK));
 
     }
 
