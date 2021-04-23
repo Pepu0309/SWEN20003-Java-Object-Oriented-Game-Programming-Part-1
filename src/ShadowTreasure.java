@@ -40,7 +40,7 @@ public class ShadowTreasure extends AbstractGame {
     }
 
     public ShadowTreasure() throws IOException {
-        this.loadEnvironment("test/test2/environment.csv");
+        this.loadEnvironment("res/IO/environment.csv");
         // Add code to initialize other attributes as needed
 
     }
