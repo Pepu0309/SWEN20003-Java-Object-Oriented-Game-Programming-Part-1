@@ -3,6 +3,7 @@ public class Player{
     // Player class which contains all attributes and behaviour associated with the player
 
     private final Image entityImage = new Image("res/images/player.png");
+
     // Constant: energy amount that the player needs to have to go towards a zombie from algorithm 1
     private static final int PLAYER_ENERGY_GOES_TOWARDS_ZOMBIE = 3;
     // Constant: step size as defined in project specification
@@ -10,6 +11,7 @@ public class Player{
     // Constant: the condition used to determine when 2 points meet
     private static final double MEET_CONDITION = 50;
 
+    // Point that provides information of the player's coordinates
     private Point point;
     private int energyLevel;
 

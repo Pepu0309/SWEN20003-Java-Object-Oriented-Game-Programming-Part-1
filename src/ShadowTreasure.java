@@ -13,9 +13,14 @@ import java.util.*;
 public class ShadowTreasure extends AbstractGame {
 
     // Some constants to be used in the operation of the ShadowTreasure Class
+
+    // Constant: used to check whether the current frame is a multiple of 10
     private static final int FRAMES_PER_TICK = 10;
+    // Constant: used with System.exit() method to terminate the game successfully
     private static final int SUCCESSFUL_TERMINATION = 0;
+    // Constant: used to define the coordinates of the energy level text
     private static final Point ENERGY_LEVEL_TEXT_POINT = new Point(20, 760);
+    // Constant: used to define the coordinates of the top left of the window
     private static final Point WINDOW_TOP_LEFT = new Point(0, 0);
 
     // for rounding double number; use this to print the location of the player
