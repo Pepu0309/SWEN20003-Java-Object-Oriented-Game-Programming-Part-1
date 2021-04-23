@@ -30,17 +30,17 @@ public class Player{
         return direction;
     }
 
+    // Draws entity on screen based on their coordinates
+    public void drawEntity(){
+        entityImage.draw(point.getX(), point.getY());
+    }
+
     public int getEnergyLevel() {
         return energyLevel;
     }
 
     public void setEnergyLevel(int energyLevel) {
         this.energyLevel = energyLevel;
-    }
-
-    // Draws entity on screen based on their coordinates
-    public void drawEntity(){
-        entityImage.draw(point.getX(), point.getY());
     }
 
     public Point getPoint() {

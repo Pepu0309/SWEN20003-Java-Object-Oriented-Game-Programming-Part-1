@@ -13,14 +13,6 @@ public class Sandwich{
         this.isEaten = false;
     }
 
-    public boolean isEaten() {
-        return isEaten;
-    }
-
-    public void setEaten(boolean eaten) {
-        isEaten = eaten;
-    }
-
     // Draws entity on screen based on their coordinates
     public void drawEntity(){
         // Only continue to draw the sandwich if it has not been eaten
@@ -29,10 +21,18 @@ public class Sandwich{
         }
     }
 
+    // Check if sandwich has been eaten by player
+    public boolean isEaten() {
+        return isEaten;
+    }
+
+    public void setEaten(boolean eaten) {
+        isEaten = eaten;
+    }
+
     public Point getPoint() {
         return point;
     }
-
 
     public static int getPlayerEnergyGained() {
         return PLAYER_ENERGY_GAINED;
