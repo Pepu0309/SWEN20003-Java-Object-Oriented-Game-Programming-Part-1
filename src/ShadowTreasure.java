@@ -88,13 +88,13 @@ public class ShadowTreasure extends AbstractGame {
     public void update(Input input) {
         // Logic to update the game, as per specification must go here
 
-        // Draws the images according to the coordinates that they are in
-        displayAll();
-
         // Updates the game status every 10 frames
         if(frameCounter % FRAMES_PER_TICK == 0) {
             updateTick();
         }
+
+        // Draws the images according to the coordinates that they are in
+        displayAll();
 
         // Increment frame counter to keep track of current frame
         frameCounter++;
