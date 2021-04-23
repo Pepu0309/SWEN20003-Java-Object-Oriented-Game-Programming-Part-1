@@ -3,8 +3,12 @@ public class Player{
     // Player class which contains all attributes and behaviour associated with the player
 
     private final Image entityImage = new Image("res/images/player.png");
+    // Constant: energy amount that the player needs to have to go towards a zombie from algorithm 1
     private static final int PLAYER_ENERGY_GOES_TOWARDS_ZOMBIE = 3;
+    // Constant: step size as defined in project specification
     private static final double STEP_SIZE = 10;
+    // Constant: the condition used to determine when 2 points meet
+    private static final double MEET_CONDITION = 50;
 
     private Point point;
     private int energyLevel;
@@ -28,6 +32,14 @@ public class Player{
         double directionY = (point2.getY() - this.getPoint().getY())/(this.getPoint().distanceTo(point2));
         Point direction = new Point(directionX, directionY);
         return direction;
+    }
+
+    // Determines whether the player meets another entity using the condition defined in project 1 specification
+    public boolean meet(Point point2){
+        if(this.point.distanceTo(point2) < MEET_CONDITION){
+            return true;
+        }
+        return false;
     }
 
     // Draws entity on screen based on their coordinates

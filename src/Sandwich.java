@@ -3,6 +3,7 @@ public class Sandwich{
     // Sandwich class which contains all attributes and behaviour associated with Sandwich
 
     private final Image entityImage = new Image("res/images/sandwich.png");
+    // Constant: the amount of energy gained when the player consumes a sandwich from algorithm 1
     private static final int PLAYER_ENERGY_GAINED = 5;
 
     private Point point;

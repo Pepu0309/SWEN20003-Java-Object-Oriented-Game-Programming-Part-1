@@ -21,6 +21,7 @@ public class ShadowTreasure extends AbstractGame {
     // for rounding double number; use this to print the location of the player
     private static DecimalFormat df = new DecimalFormat("0.00");
 
+    // Declare entities and initialise background according to instructions from specification
     private Player player;
     private Zombie zombie;
     private Sandwich sandwich;
@@ -29,7 +30,9 @@ public class ShadowTreasure extends AbstractGame {
     // Counting the number of frames from 1 as instructed by the project specification
     private int frameCounter = 1;
 
+    // Declare an object of DrawOptions class from Bagel package to be used later for displaying energy level of player
     private DrawOptions energyFontDrawOptions = new DrawOptions();
+    // Initialise object of Font class from Bagel packaged as instructed by project specification
     private final Font energyFont = new Font("res/font/DejaVuSans-Bold.ttf", 20);
 
     public static void printInfo(double x, double y, int e) {
@@ -37,7 +40,7 @@ public class ShadowTreasure extends AbstractGame {
     }
 
     public ShadowTreasure() throws IOException {
-        this.loadEnvironment("res/IO/environment.csv");
+        this.loadEnvironment("test/test2/environment.csv");
         // Add code to initialize other attributes as needed
 
     }
@@ -56,8 +59,8 @@ public class ShadowTreasure extends AbstractGame {
 
                 /* Replaces all occurrences of anything that's not an alphanumerical, comma or dot character with an
                  * empty string, using regex expression [^,.a-zA-z0-9]+. Code referenced from
-                 * https://stackoverflow.com/questions/39672094/
-                 * how-to-remove-all-special-character-in-a-string-except-dot-and-comma/39672126 and modified for use.
+                 * Ni Ding's announcement and then modified by adding the exclusion of , and . characters to check
+                 * the whole CSV row for special characters.
                  */
                 fileText = fileText.replaceAll("[^,.a-zA-z0-9]+", "");
                 String[] currentCSVRow = fileText.split(",");
@@ -118,7 +121,7 @@ public class ShadowTreasure extends AbstractGame {
     public void updateTick(){
 
         // Algorithm 1 from the specification, called every game tick
-        if (player.getPoint().meet(zombie.getPoint())){
+        if (player.meet(zombie.getPoint())){
             player.setEnergyLevel(player.getEnergyLevel() - Zombie.getPlayerEnergyLoss());
 
             // prints information of the player right before game is terminated
@@ -128,7 +131,7 @@ public class ShadowTreasure extends AbstractGame {
             Window.close();
             System.exit(SUCCESSFUL_TERMINATION);
 
-        } else if (player.getPoint().meet(sandwich.getPoint()) && !sandwich.isEaten()){
+        } else if (player.meet(sandwich.getPoint()) && !sandwich.isEaten()){
             player.setEnergyLevel(player.getEnergyLevel() + Sandwich.getPlayerEnergyGained());
             sandwich.setEaten(true);
         }
